@@ -1,0 +1,3 @@
+com.sangamesh.llm.provider.gemini.GeminiProvider
+com.sangamesh.llm.provider.claude.ClaudeProvider
+com.sangamesh.llm.provider.openai.OpenAiProvider
