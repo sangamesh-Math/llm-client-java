@@ -3,6 +3,7 @@ package com.sangamesh.llm.provider.openai;
 import com.sangamesh.llm.error.LlmAuthenticationException;
 import com.sangamesh.llm.error.LlmException;
 import com.sangamesh.llm.error.LlmProviderException;
+import com.sangamesh.llm.error.LlmRateLimitException;
 import com.sangamesh.llm.model.LlmRequest;
 import com.sangamesh.llm.model.LlmResponse;
 import com.sangamesh.llm.provider.LlmProvider;
@@ -44,7 +45,7 @@ public final class OpenAiProvider implements LlmProvider {
             String body = OpenAiRequestMapper.toJson(request);
 
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(URI.create(config.baseUrl() + "/chat/completions"))
+                    .uri(URI.create(config.baseUrl() + "/responses"))
                     .timeout(config.timeout())
                     .header("Authorization", "Bearer " + config.apiKey())
                     .header("User-Agent", "unopinionated-java-llm/0.1.0")
@@ -56,6 +57,13 @@ public final class OpenAiProvider implements LlmProvider {
                     httpRequest,
                     HttpResponse.BodyHandlers.ofString()
             );
+
+            if (response.statusCode() == 429) {
+                throw new LlmRateLimitException(
+                        PROVIDER_NAME,
+                        "OpenAI rate limit exceeded/Outdated model selected: " + response.body()
+                );
+            }
 
             if (response.statusCode() == 401) {
                 throw new LlmAuthenticationException(PROVIDER_NAME, "Invalid OpenAI API key");
@@ -91,7 +99,7 @@ public final class OpenAiProvider implements LlmProvider {
             String body = OpenAiRequestMapper.toJson(request, true);
 
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                    .uri(URI.create(config.baseUrl() + "/chat/completions"))
+                    .uri(URI.create(config.baseUrl() + "/responses"))
                     .timeout(config.timeout())
                     .header("Authorization", "Bearer " + config.apiKey())
                     .header("User-Agent", "unopinionated-java-llm/0.1.0")
