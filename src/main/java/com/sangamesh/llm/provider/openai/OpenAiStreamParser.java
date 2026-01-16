@@ -6,7 +6,6 @@ final class OpenAiStreamParser {
     }
 
     static String extractDelta(String json) {
-        // Looks for: "content":"..."
         int index = json.indexOf("\"content\"");
         if (index == -1) {
             return "";
