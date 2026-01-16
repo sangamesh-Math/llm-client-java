@@ -6,8 +6,6 @@ final class OpenAiResponseParser {
     }
 
     static String extractText(String responseBody) {
-        // Minimal parsing (safe for now, replace later)
-        // Looks for: "content":"..."
         int index = responseBody.indexOf("\"content\"");
         if (index == -1) {
             return "";
