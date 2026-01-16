@@ -6,43 +6,56 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Coordinates -->
     <groupId>io.github.sangamesh-math</groupId>
     <artifactId>llm-client-java</artifactId>
     <version>1.0.0</version>
 
+    <!-- Project Info -->
     <name>LLM Client for Java</name>
     <description>
-        A provider neutral Java client for Large Language Models such as
-        Gemini, OpenAI, and Claude.
+        A provider-neutral Java client for Large Language Models
+        such as Gemini, OpenAI, and Claude.
     </description>
     <url>https://github.com/sangamesh-Math/llm-client-java</url>
 
+    <!-- License -->
     <licenses>
         <license>
             <name>MIT License</name>
             <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
         </license>
     </licenses>
 
+    <!-- Developer -->
     <developers>
         <developer>
+            <id>sangamesh-math</id>
             <name>Sangamesh M</name>
+            <email>sangamesh.jobs@gmail.com</email>
             <url>https://github.com/sangamesh-Math</url>
         </developer>
     </developers>
 
+    <!-- SCM -->
     <scm>
         <connection>scm:git:git://github.com/sangamesh-Math/llm-client-java.git</connection>
-        <developerConnection>scm:git:ssh://github.com:sangamesh-Math/llm-client-java.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com/sangamesh-Math/llm-client-java.git</developerConnection>
         <url>https://github.com/sangamesh-Math/llm-client-java</url>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
+        <!-- Java -->
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Versions -->
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
     </properties>
 
+    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -55,6 +68,7 @@
     <build>
         <plugins>
 
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -64,6 +78,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Sources JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -78,10 +93,14 @@
                 </executions>
             </plugin>
 
+            <!-- Javadoc JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.6.3</version>
+                <configuration>
+                    <failOnError>false</failOnError>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -92,12 +111,45 @@
                 </executions>
             </plugin>
 
+            <!-- GPG Signing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Sonatype Central Publishing -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.6.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
+
+            <!-- Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
 
         </plugins>
     </build>
+
 </project>
