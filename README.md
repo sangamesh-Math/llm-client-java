@@ -18,7 +18,7 @@ This library abstracts away vendor-specific SDKs and HTTP details, allowing Java
 
   6. Maven Central ready
 
-==============================================================================================
+========================================
 Installation:
 
 <dependency>
@@ -27,9 +27,9 @@ Installation:
     <version>1.0.0</version>
 </dependency>
 
-================================================================================================
+=========================
 Architecture Overview:
-================================================================================================
+=========================
 Application Code
        |
        v
@@ -41,7 +41,7 @@ Application Code
        +--> GeminiProvider
        +--> OpenAiProvider
        +--> ClaudeProvider
-================================================================================================
+============================
 
 Quick Start (Gemini Example):
   Note: You need to generate a Gemini Api key from google ai studio and set it in environment variables!
@@ -63,7 +63,7 @@ LlmResponse response = client.generate(request);
 
 System.out.println(response.text());
 
-============================================================================================
+========================
 
 
 Switching Providers (No Code Changes)
@@ -74,7 +74,7 @@ LlmClient client = LlmClients.builder()
     .provider(new OpenAiProvider(openAiConfig))
     .build();
 
-============================================================================================
+================
 
 
 Testing Philosophy
@@ -120,13 +120,13 @@ Business logic
 LLM vendor details
 
 
-====================================================================
+====================
 Requirements
 
 Java 21+
   and
 Maven 3.9+
-====================================================================
+===================
 
 
 This library is designed for engineers building serious Java systems who want:
@@ -140,6 +140,6 @@ This library is designed for engineers building serious Java systems who want:
 If you’ve ever rewritten LLM integrations just to switch providers, this library is for you.
 
 
-========================================================================
+===================
 
 Contributions are welcome!!
