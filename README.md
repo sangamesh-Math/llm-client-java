@@ -1,4 +1,4 @@
-=====================================================================LLM Client for Java========================================================================================
+=============================LLM Client for Java============================
 
 A provider-neutral Java client for working with Large Language Models (LLMs) such as Google Gemini, OpenAI GPT, and Anthropic Claude using a single, clean API.
 
